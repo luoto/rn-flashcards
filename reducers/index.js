@@ -27,11 +27,24 @@ function navigationReducer (state = initialNavigationState, action) {
 function deckReducer (state = {}, action) {
 	switch(action.type) {
 		case CREATE_DECK:
-			return state;
+			return {
+				...state,
+				[action.payload.title]: {title: action.payload.title, questions: []}
+			};
 		case ADD_CARD_TO_DECK:
-			return state;
+			let newQuestions = state[action.payload.deckId].questions.slice()
+			newQuestions.splice(0, 0, action.payload.card);
+			return {
+				...state,
+				[action.payload.deckId]: {
+					title: action.payload.deckId,
+					questions: newQuestions
+				}
+			}
 		case LOAD_DECK:
-			return state
+			return {
+				...action.payload.deck
+			}
 		default:
 			return state;
 	}
