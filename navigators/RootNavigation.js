@@ -2,8 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { addNavigationHelpers } from 'react-navigation';
 import RootNavigator from './RootNavigator';
+import { initializeDeck } from '../actions';
 
 class RootNavigation extends React.Component {
+  componentDidMount() {
+    this.props.initializeDeck();
+  }
+
   render() {
     return (
       <RootNavigator navigation={addNavigationHelpers({
