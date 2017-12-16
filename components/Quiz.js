@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, TextInput, Button, FlatList, ActivityIndicator } from 'react-native';
 import { getDeck } from '../utils/db';
+import { QuizContainer, Heading, AnswerField, Container, ButtonGroup, ButtonWrapper} from './styled';
 
 class Quiz extends React.Component {
   state = {
@@ -58,34 +59,46 @@ class Quiz extends React.Component {
     let { revealAnswer, isComplete, currentQuestion, questions, numberCorrect} = this.state;
     if (isComplete) {
       return (
-        <View>
-          <Text>
+        <Container>
+          <Heading>
             {(numberCorrect/questions.length * 100).toFixed(0)} % Correct
-          </Text>
-          <Button onPress={() => this._restartQuiz()} title="Restart Quiz" />
-          <Button onPress={() => this._goBackToDeck()} title="Back to Deck" />
-        </View>
+          </Heading>
+          <ButtonGroup>
+            <ButtonWrapper>
+              <Button onPress={() => this._restartQuiz()} title="Restart Quiz" />
+            </ButtonWrapper>
+            <ButtonWrapper>
+              <Button onPress={() => this._goBackToDeck()} title="Back to Deck" />
+            </ButtonWrapper>
+          </ButtonGroup>
+        </Container>
       )
     }
 
     if (questions.length === 0) {
       return (
-        <View>
+        <Container>
           <ActivityIndicator size="large" />
-        </View>
+        </Container>
       )
     }
 
     return (
-      <View>
+      <QuizContainer>
         <Text>{`${currentQuestion + 1} / ${questions.length}`}</Text>
-        <Text>{questions[currentQuestion].question}</Text>
+        <Heading>{questions[currentQuestion].question}</Heading>
         <TouchableOpacity onPress={() => this._revealAnswer()}>
-          { revealAnswer ? <Text>{questions[currentQuestion].answer}</Text> : <Text>Show Answer</Text> }
+          { revealAnswer ? <AnswerField>{questions[currentQuestion].answer}</AnswerField> : <AnswerField>Show Answer</AnswerField> }
         </TouchableOpacity>
-        <Button onPress={() => this._addPoint()} title="Correct" />
-        <Button onPress={() => this._nextQuestion()} title="Incorrect" />
-      </View>
+        <ButtonGroup>
+          <ButtonWrapper>
+            <Button onPress={() => this._addPoint()} title="Correct" />
+          </ButtonWrapper>
+          <ButtonWrapper>
+            <Button onPress={() => this._nextQuestion()} title="Incorrect" />
+          </ButtonWrapper>
+        </ButtonGroup>
+      </QuizContainer>
     )
   }
 }

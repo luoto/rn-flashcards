@@ -1,13 +1,14 @@
 import React from 'react';
 import { View, FlatList, Text, List, TouchableOpacity, TextInput, ActivityIndicator} from 'react-native';
 import { connect } from 'react-redux';
+import { ListItem, Heading, Subheading, Container} from './styled';
 
 function DeckList(props) {
   if (props.decks.length === 0) {
     return (
-      <View style={{display: "flex", justifyContent: "center"}}>
+      <Container style={{display: "flex", justifyContent: "center"}}>
         <ActivityIndicator size="large" />
-      </View>
+      </Container>
     )
   }
 
@@ -17,12 +18,12 @@ function DeckList(props) {
       keyExtractor={(item) => item.title}
       renderItem={({item}) => {
       return (
-        <View>
+        <ListItem>
           <TouchableOpacity onPress={() => props.navigation.navigate('Deck', {title: item.title})}>
-            <Text>{item.title}</Text>
-            <Text>{item.questions.length} cards</Text>
+            <Heading>{item.title}</Heading>
+            <Subheading>{item.questions.length} cards</Subheading>
           </TouchableOpacity>
-        </View>
+        </ListItem>
         )
       }}
     />

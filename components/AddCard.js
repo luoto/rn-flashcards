@@ -1,8 +1,9 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Button, TextInput } from 'react-native';
+import { View, Text, TouchableOpacity, Button } from 'react-native';
 import styled from 'styled-components/native';
 import { connect } from 'react-redux';
 import { addCard } from '../actions';
+import { Input, Container } from './styled';
 
 class AddCard extends React.Component {
   state = {
@@ -23,13 +24,13 @@ class AddCard extends React.Component {
 
   render() {
     return (
-      <View>
-        <TextInput
+      <Container>
+        <Input
           placeholder="Question"
           onChangeText={question => this.setState({question: question})}
           value={this.state.question}
         />
-        <InputText
+      <Input
           placeholder="Answer"
           onChangeText={answer => this.setState({answer: answer})}
           value={this.state.answer}
@@ -38,7 +39,7 @@ class AddCard extends React.Component {
           title="Add Card"
           onPress={this.handleSubmit}
         />
-    </View>
+    </Container>
     )
   }
 };

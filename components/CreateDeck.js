@@ -3,6 +3,7 @@ import { View, Text, TextInput, Button, ActivityIndicator} from 'react-native';
 import { connect } from 'react-redux';
 import { createDeck } from '../actions';
 import { NavigationActions } from 'react-navigation';
+import { CenteredHeading, Input, Container} from './styled';
 
 
 class CreateDeck extends React.Component {
@@ -49,9 +50,9 @@ class CreateDeck extends React.Component {
     }
 
     return (
-      <View>
-        <Text>What is the title of your new deck?</Text>
-        <TextInput
+      <Container>
+        <CenteredHeading>What is the title of your new deck?</CenteredHeading>
+        <Input
           placeholder="Deck Title"
           onChangeText={title => this.setState({title: title})}
           value={this.state.title}
@@ -60,7 +61,7 @@ class CreateDeck extends React.Component {
           title="Create Deck"
           onPress={this.onSubmit}
         />
-    </View>
+    </Container>
     )
   }
 };
