@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, TextInput, Button, FlatList, ActivityIndicator } from 'react-native';
+import { clearLocalNotification, setLocalNotification } from '../utils/helpers';
 import { getDeck } from '../utils/db';
 import { QuizContainer, Heading, AnswerField, Container, ButtonGroup, ButtonWrapper} from './styled';
 
@@ -58,6 +59,7 @@ class Quiz extends React.Component {
   render() {
     let { revealAnswer, isComplete, currentQuestion, questions, numberCorrect} = this.state;
     if (isComplete) {
+      clearLocalNotification().then(setLocalNotification());
       return (
         <Container>
           <Heading>
