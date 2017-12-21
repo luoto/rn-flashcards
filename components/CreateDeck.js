@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TextInput, Button, ActivityIndicator} from 'react-native';
+import { View, Text, TextInput, Button, ActivityIndicator, Alert } from 'react-native';
 import { connect } from 'react-redux';
 import { createDeck } from '../actions';
 import { NavigationActions } from 'react-navigation';
@@ -15,6 +15,11 @@ class CreateDeck extends React.Component {
   onSubmit = () => {
     let { title } = this.state;
     let deck = {title, questions: []};
+
+    if (title === '') {
+      Alert.alert('Deck Title cannot be empty');
+      return;
+    }
 
     this.props.createDeck(title).then(() => {
       const resetAction = NavigationActions.reset({

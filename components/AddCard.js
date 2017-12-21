@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Button } from 'react-native';
+import { View, Text, TouchableOpacity, Button, Alert } from 'react-native';
 import styled from 'styled-components/native';
 import { connect } from 'react-redux';
 import { addCard } from '../actions';
@@ -14,6 +14,11 @@ class AddCard extends React.Component {
   handleSubmit = () => {
     let { question, answer } = this.state;
     let { title, update, updateDeck } = this.props.navigation.state.params;
+
+    if (question === '' || answer === '') {
+      Alert.alert('Question and Answer fields cannot be empty');
+      return;
+    }
 
     this.props.addCard(title, {question, answer});
     this.setState({
