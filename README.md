@@ -22,7 +22,7 @@ To install the debugger for macOS:
 ## How to Contribute
 Contributions in the form of issues and pull requests are welcome and encouraged.
 
-Contributors must follow the [code of conduct](https://github.com/luoto/rn-flashcards/blob/master/code-of-conduct.md).
+Contributors must follow the [code of conduct](https://github.com/luoto/rn-flashcards/blob/master/CODE_OF_CONDUCT.md).
 
 ## License
 Copyright 2017 TONY LUO
